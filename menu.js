@@ -2,10 +2,17 @@
 function Container() {
 	this.id = '';
 	this.className = '';
-	this.htmlResult = '';
+	this.htmlResult = 'проверка обращения';
 };
 Container.prototype.render = function() {
 	return this.htmlResult;
+};
+Container.prototype.proba = 'proba';
+Container.prototype.remove = function() {
+	Container = null;
+	for(let key in this) {
+		delete this[key];
+	}
 };
 function Menu(menu_id, menu_className, menu_items) {
 	Container.call(this);
@@ -40,3 +47,6 @@ let item02 = new MenuItem('/about.html', 'aboutPage', 'О компании');
 let menu = new Menu('#myMenu', 'myMenuClass', {0 : item01, 1 : item02});
 
 document.body.innerHTML = menu.render();
+
+
+
