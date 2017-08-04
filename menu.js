@@ -9,7 +9,8 @@ Container.prototype.render = function() {
 };
 Container.prototype.proba = 'proba';
 Container.prototype.remove = function() {
-
+	this.elem = document.getElementById(this.id);
+	this.elem.parentNode.removeChild(this.elem);
 };
 function Menu(menu_id, menu_className, menu_items) {
 	Container.call(this);
@@ -44,6 +45,10 @@ let item02 = new MenuItem('/about.html', 'aboutPage', 'О компании');
 let menu = new Menu('#myMenu', 'myMenuClass', {0 : item01, 1 : item02});
 
 document.body.innerHTML = menu.render();
+
+setTimeout(function() {
+	menu.remove();
+}, 2000)
 
 
 
