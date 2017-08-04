@@ -9,6 +9,10 @@ Container.prototype.render = function() {
 };
 Container.prototype.proba = 'proba';
 Container.prototype.remove = function() {
+	if( !this.id ) {
+		console.log('у этого элемента нет id');
+		return
+	}
 	this.elem = document.getElementById(this.id);
 	this.elem.parentNode.removeChild(this.elem);
 };
