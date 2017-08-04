@@ -9,10 +9,7 @@ Container.prototype.render = function() {
 };
 Container.prototype.proba = 'proba';
 Container.prototype.remove = function() {
-	Container = null;
-	for(let key in this) {
-		delete this[key];
-	}
+
 };
 function Menu(menu_id, menu_className, menu_items) {
 	Container.call(this);
