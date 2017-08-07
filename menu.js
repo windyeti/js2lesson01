@@ -29,7 +29,10 @@ Menu.prototype.render = function() {
 	for(let key in this.menu_items) {
 		if(this.menu_items[key] instanceof MenuItem) {
 			result += this.menu_items[key].render();
+		} else if(this.menu_items[key] instanceof Menu) {
+			result += this.menu_items[key].render();
 		}
+
 	};
 	return result += '</ul>';
 };
@@ -38,30 +41,27 @@ function MenuItem(menuItem_href, menuItem_className, item_name, submenu) {
 	this.menuItem_href = menuItem_href;
 	this.menuItem_className = menuItem_className;
 	this.item_name = item_name;
-	this.submenu = submenu;
 };
 MenuItem.prototype = Object.create(Container.prototype);
 MenuItem.prototype.render = function() {
-	if(this.submenu) {
-		this.MenuSubMenu = new Menu('','', this.submenu);
-		console.log(this.MenuSubMenu);
-	}
-	return '<li class='+ this.menuItem_className +' href='+ this.menuItem_href +'>' + this.item_name + this.MenuSubMenu.render() + '</li>';
+	return '<li class='+ this.menuItem_className +' href='+ this.menuItem_href +'>' + this.item_name + '</li>';
 };
 
 let itemSub00 = new MenuItem('/people.html', 'people', 'Люди');
 let itemSub01 = new MenuItem('/history.html', 'history', 'История');
 let itemSub02 = new MenuItem('/factory.html', 'factory', 'Заводы');
 
-let item01 = new MenuItem('/', 'mainPage', 'Главная');
-let item02 = new MenuItem('/about.html', 'aboutPage', 'О компании', { 0: itemSub00, 1: itemSub01, 2: itemSub02 });
+let item00 = new MenuItem('/', 'mainPage', 'Главная');
+let item01 = new MenuItem('/about.html', 'aboutPage', 'О компании');
+let item02 = new Menu('#about', 'aboutPage', { 0: itemSub00, 1: itemSub01, 2: itemSub02 });
+let item03 = new MenuItem('/product.html', 'product', 'Продукт');
 
-let menu = new Menu('#myMenu', 'myMenuClass', {0 : item01, 1 : item02});
+let menu = new Menu('#myMenu', 'myMenuClass', {0 : item00, 1 : item01, 2 : item02, 3 : item03});
 
 document.body.innerHTML = menu.render();
 
 setTimeout(function() {
-	item02.remove();
+	menu.remove();
 }, 2000)
 
 
