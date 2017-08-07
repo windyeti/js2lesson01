@@ -46,7 +46,7 @@ MenuItem.prototype.render = function() {
 		this.MenuSubMenu = new Menu('','', this.submenu);
 		console.log(this.MenuSubMenu);
 	}
-	return '<li class='+ this.menuItem_className +' href='+ this.menuItem_href +'>' + this.item_name + this.MenuSubMenu + '</li>';
+	return '<li class='+ this.menuItem_className +' href='+ this.menuItem_href +'>' + this.item_name + this.MenuSubMenu.render() + '</li>';
 };
 
 let itemSub00 = new MenuItem('/people.html', 'people', 'Люди');
