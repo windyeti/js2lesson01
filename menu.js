@@ -30,7 +30,7 @@ Menu.prototype.render = function() {
 		if(this.menu_items[key] instanceof MenuItem) {
 			result += this.menu_items[key].render();
 		} else if(this.menu_items[key] instanceof Menu) {
-			result += this.menu_items[key].render();
+			result += '<li>' + this.menu_items[key].render() + '</li>';
 		}
 
 	};
@@ -60,9 +60,9 @@ let menu = new Menu('#myMenu', 'myMenuClass', {0 : item00, 1 : item01, 2 : item0
 
 document.body.innerHTML = menu.render();
 
-setTimeout(function() {
-	menu.remove();
-}, 2000)
+// setTimeout(function() {
+// 	menu.remove();
+// }, 2000)
 
 
 
